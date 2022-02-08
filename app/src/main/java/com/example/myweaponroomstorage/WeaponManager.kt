@@ -29,12 +29,6 @@ class WeaponManager {
 
     infix fun getWeapon(index: Int): Weapon = weapons.get(index)
 
-    fun updateWeapon(index: Int, func: (Weapon)->Unit) {
-        func( weapons[index])
-        MainActivity.scope.launch {
-            weaponDao.update(weapons[index])
-        }
-    }
 
     val count: Int get() = weapons.size
     override fun toString(): String = "[${weapons.joinToString { it.toString() }}]"

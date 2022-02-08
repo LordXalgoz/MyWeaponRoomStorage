@@ -5,7 +5,6 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
-import java.util.*
 
 class RvAdapterWeapon(var weaponManager: WeaponManager): RecyclerView.Adapter<RvAdapterWeapon.WeaponViewHolder>() {
 
@@ -28,33 +27,9 @@ class RvAdapterWeapon(var weaponManager: WeaponManager): RecyclerView.Adapter<Rv
     override fun onBindViewHolder(holder: WeaponViewHolder, position: Int) {
         var weapon = weaponManager.getWeapon(position)
         with(holder) {
-            with(editTextViewWeaponName) {
-                setText(weapon.name)
-                setOnFocusChangeListener { _, _ ->
-                    if (!isFocused) {
-                        val index = holder.layoutPosition
-                        weaponManager.updateWeapon(index) { it.name = text.toString() }
-                    }
-                }
-            }
-            with(editTextWeaponMaterial) {
-                setText(weapon.material)
-                setOnFocusChangeListener { _, _ ->
-                    if (!isFocused) {
-                        val index = holder.layoutPosition
-                        weaponManager.updateWeapon(index) { it.material = text.toString() }
-                    }
-                }
-            }
-            with(editTextWeaponDate) {
-                setText(df.format(weapon.date))
-                setOnFocusChangeListener { _, _ ->
-                    if (!isFocused) {
-                        val index = holder.layoutPosition
-                        weaponManager.updateWeapon(index) { it.date = df.parse("$text") ?: Date() }
-                    }
-                }
-            }
+            editTextViewWeaponName.setText(weapon.name)
+            editTextWeaponMaterial.setText(weapon.material)
+            editTextWeaponDate.setText(df.format(weapon.date))
             buttonWeaponDelete.setOnClickListener {
                 weaponManager.deleteWeapon(position)
                 notifyItemRemoved(position)

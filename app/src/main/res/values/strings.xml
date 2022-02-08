@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyWeaponRoomStorage</string>
+    <string name="dateFormat">dd.MM.yyyy</string>
+</resources>
